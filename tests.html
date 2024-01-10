@@ -1,0 +1,225 @@
+<script src="collapse.js"></script>
+<h2 style="color:#000080;text-align:left">Access Tests</h2>
+<section class="columns">
+    <div class="column">
+<! -- Test #1 - Geo IP Filtering -->
+    <section class="columns">
+        <div class="columnborderless">
+            <input name="testType[]" type="checkbox" value="geo" form="testSelector" checked>
+            <label for="geo">Geo Filtering</label><br><br>
+        </div>
+        <div class="columnborderless">
+            <ul>
+                <li>Geographic filtering allows the administrator to block traffic sourced or destined to specific regions geographically.</li><br>
+                <li>This test attempts to load the following URL, which is a site hosted in China: <a href='https://taobao.com' target='_blank'>https://taobao.com</a></li><br>
+            </ul>
+        </div>
+        <div class="columnborderless">
+            <div id="geoStatus"></div>
+        </div>
+    </section>
+    <button class="collapsible">Details</button>
+        <div class="content">
+            <ul>
+                <li>Geo Filtering gives an administrator the ability to block traffic sourced from OR destined to specific countries and geograhic regions.  In this test, we are testing your brower's connectivity to tabao.com, a site which is hosted in China.</li><br>
+                <li>Also a function of NGFW, Geo Filtering relies on an internal database of IP address to Geolocation mapping.  When a session is initiated from a host machine and transits the NGFW device, the firewall will take a look at the source and destination IP addresses.  From here, if Geo IP Filtering is enabled, then the NGFW will compare the source and destionation IPs of the session to its database checking for matches against the policy set.</li><br>
+                <li>Initially, Geo IP filtering was limited to country or region.  With newer firewalls, the datasbases have been updated to match on more granular locations such as city and state</li><br>
+                <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully connect to a site hosted in China (tabao.com).</li><br>
+            </ul>
+        </div>
+    <br>
+    <hr style="border-top:3px solid #242526" />
+    <br>
+<! -- Test #2 - Botnet Callback -->
+    <section class="columns">
+        <div class="columnborderless">
+            <input name="testType[]" type="checkbox" value="botnet" form="testSelector" checked>
+            <label for="botnet">Preventing Botnet Callback</label><br>
+        </div>
+        <div class="columnborderless">
+            <ul>
+                <li>This test attempts to "call home" to a known command and control server. No real information is sent in this test, we are simply loading the landing page of the website.</li><br>
+                <li>The URL we are using in this test is <a href="https://ssgoldtravel.com" target="_blank"></a></li><br>
+            </ul>
+        </div>
+        <div class="columnborderless">
+            <div id="botnetStatus"></div>
+        </div>
+    </section>
+    <button class="collapsible">Details</button>
+    <div class="content">
+        <ul>
+            <li>This test attempts to "call home" to a known command and control server. No real information is sent in this test, we are simply loading the landing page of the website.</li><br>
+            <li>The URL we are using in this test is <a href="https://ssgoldtravel.com" target="_blank"></a></li><br>
+            <li>This URL was previously used as part of the Clipsa password stealer C2 infrastructure.</li><br>
+        </ul>
+    </div>
+    <br>
+    <hr style="border-top:3px solid #242526" />
+    <br>
+<! -- Test #3 - Application Filtering -->
+    <section class="columns">
+        <div class="columnborderless">
+            <input name="testType[]" type="checkbox" value="bittorrent" form="testSelector" checked>
+            <label for="bittorrentbox">Application Filtering</label><br>
+        </div>
+        <div class="columnborderless">
+            <ul>
+                <li> Application filtering restricts user's ability to access certain applications, wherever they may live, based on Layer 7 attributes.  </li><br>
+                <li>This test attempts to load the following URL: <a href="https://bittorrent.com" target='_blank'>https://bittorrent.com</a></li><br>
+            </ul>
+        </div>
+        <div class="columnborderless">
+            <div id="bittorrentStatus"></div>
+        </div>
+    </section>
+    <button class="collapsible">Details</button>
+    <div class="content">
+        <ul>
+            <li>Application filtering allows the administrator to block specific traffic based on Layer 7 application attributes.  In this test, we are testing your browser's connectivity to https://bittorrent.com</li><br>
+            <li>Application filtering requires Next Generation Firewall (NGFW) technology.  Appliances with NGFW capabilities will have built in app-id engines, that typically consider things like destination IP, port/protocol, initial handshake behaviors, and packet size to match against a list of predefined applications and their known behaviors.  Most NGFW come with thousands of predefined applications, but also support the ability to custom define app-match criteria for homegrown applications.</li><br>
+            <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red X is shown, then your browser was successfully able to load bittorrent.com</li><br>
+        </ul>
+    </div>
+    <br>
+    <hr style="border-top:3px solid #242526" />
+    <br>
+<! -- Test #4 - URL Filtering/Adult Content -->
+
+    <section class="columns">
+        <div class="columnborderless">
+                <input name="testType[]" type="checkbox" value="adult" form="testSelector" checked>
+                <label for="adult">Block Adult Websites:</label><br>
+        </div>
+        <div class="columnborderless">
+            <ul>
+                <li>This test attempts to download a benign icon from a known adult website</li><br>
+                <li>File can be downloaded from the following URL: <a href='https://static-lvlt.xhcdn.com/xh-desktop/images/favicon/favicon.ico?1' target='_blank'>https://static-lvlt.xhcdn.com/xh-desktop/images/favicon/favicon.ico?1</a></li><br>
+            </ul>
+        </div>
+        <div class="columnborderless">
+            <div id="adultStatus"></div>
+        </div>
+    </section>
+    <button class="collapsible" id="details">Details</button>
+        <div class="content">
+            <ul>
+                <li>This test attempts to download a benign icon from a known adult website</li><br>
+                <li>URL Filtering can typically be enforced without the need for SSL decryption, as NGFW will have access to a database where they can compare the "Server Name Indicator" to a list categorized SNIs.</li><br>
+                <li>SNI is transmitted as part of the Client Hello message in the TLS handshake.  This field is typically plain text/unencrypted</li><br>
+                <li>Some newer sites support "Encrypted SNI" or "eSNI".  This would render URL filtering ineffective if you did not have some sort of TLS decryption in place.</li><br>
+                <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>
+            </ul>
+        </div>
+        <br>
+        <hr style="border-top:3px solid #242526" />
+        <br>
+    
+<! -- Test #5 - Phishing sites -->
+    
+        <section class="columns">
+        <div class="columnborderless">
+                <input name="testType[]" type="checkbox" value="phish" form="testSelector" checked>
+                <label for="phish">Block Phishing Sites:</label><br>
+        </div>
+        <div class="columnborderless">
+            <ul>
+                <li>This test attempts to download a benign icon from a known phishing site, pulled from Cisco Talos' Phishtank.com</li><br>
+                <li>File can be downloaded from the following URL: <a href='http://qwkcheckout.com/favicon.ico' target='_blank'>http://qwkcheckout.com/favicon.ico</a></li><br>
+                <li>This is a live phishing site. Do NOT enter any credentials on this site!</li><br>
+            </ul>
+        </div>
+        <div class="columnborderless">
+            <div id="phishStatus"></div>
+        </div>
+    </section>
+    <button class="collapsible" id="details">Details</button>
+        <div class="content">
+            <ul>
+                <li>This test attempts to download a benign icon from a known phishing site, pulled from Cisco Talos' Phishtank.com</li><br>
+                <li>File can be downloaded from the following URL: <a href='http://qwkcheckout.com/favicon.ico' target='_blank'>http://qwkcheckout.com/favicon.ico</a></li><br>
+                <li>This is a live phishing site. Do NOT enter any credentials on this site!</li><br>
+            </ul>
+        </div>
+        <br>
+        <hr style="border-top:3px solid #242526" />
+        <br>
+    </div>
+</section>
+
+
+
+
+
+
+
+<! -- Section - Deep Inspection Tests -->
+<hr style="border-top:3px solid #242526" /><br><br>
+<h2 style="color:#000080;text-align:left">Deep Inspection Tests</h2>
+<section class="columns">
+    <div class="column">
+<! -- Test 1 - Eicar SSL  -->
+        <section class="columns">
+            <div class="columnborderless">
+                <input name="testType[]" type="checkbox" value="av" form="testSelector" checked>
+                <label for="av">Virus Detection Over SSL</label><br>
+            </div>
+            <div class="columnborderless">
+                <ul>
+                    <li>This test attempts to download an EICAR test file over a TLS encrypted connection (https).</li><br>
+                    <li>This file is a test file only, and will not harm your computer</li><br>
+                    <li>File can be downloaded from the following URL: <a href='https://secure.eicar.org/eicar.com' target='_blank'>https://secure.eicar.org/eicar.com</a></li><br>
+                </ul>
+            </div>
+            <div class="columnborderless">
+                <div id="avStatus"></div>
+            </div>
+        </section>
+        <button class="collapsible">Details</button>
+        <div class="content">
+        <ul>
+            <li>In this test, we are attempting to download an EICAR test file over a TLS/SSL encrypted session.  Most modern web traffic is TLS encrypted, meaning you will need a solution which can handle SSL decryption in order to stop the downloading of malicious content over https. We are using eicar.org/eicar.com to test.</li><br>
+            <li>Without SSL decryption, users are able to download any files over https as that session would otherwise be encrypted end to end.</li><br>
+            <li>SSL decryption requires a firewall to decrypt user's sessions, inspect the payload, and re encrypt the session before passing to the client/server.  To do this, a trusted certficate must be installed on both the firewall and the host machine.</li><br>
+            <li>Some solutions are starting to support things like TLS fingerprinting, which enforces policy based on TCP and TLS handshake behaviors.  This eliminates the need for certificate management, though the overall security efficacy may suffer as a result</li><br>
+            <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>
+        </ul>
+        </div>
+        <br>
+        <hr style="border-top:3px solid #242526" />
+        <br>
+<! -- Test 2 - Zipped Eicar File  -->
+        <section class="columns">
+            <div class="columnborderless">
+                <input name="testType[]" type="checkbox" value="zip" form="testSelector" checked>
+                <label for="av">Virus Detection (Zip Archive)</label><br>
+            </div>
+            <div class="columnborderless">
+                <ul>
+                    <li>This test attempts to download an EICAR test file which has been zipped multiple times.</li><br>
+                    <li>This file is a test file only, and will not harm your computer</li><br>
+                    <li>File can be downloaded from the following URL: <a href='https://satlab.dreamhosters.com/doublezip.zip' target='_blank'>https://satlab.dreamhosters.com/doublezip.zip</a></li><br>
+                </ul>
+            </div>
+            <div class="columnborderless">
+                <div id="zipStatus"></div>
+            </div>
+        </section>
+        <button class="collapsible">Details</button>
+        <div class="content">
+        <ul>
+            <li>In this test, we are attempting to download an EICAR test file over a TLS/SSL encrypted session.  Most modern web traffic is TLS encrypted, meaning you will need a solution which can handle SSL decryption in order to stop the downloading of malicious content over https. We are using eicar.org/eicar.com to test.</li><br>
+            <li>Without SSL decryption, users are able to download any files over https as that session would otherwise be encrypted end to end.</li><br>
+            <li>SSL decryption requires a firewall to decrypt user's sessions, inspect the payload, and re encrypt the session before passing to the client/server.  To do this, a trusted certficate must be installed on both the firewall and the host machine.</li><br>
+            <li>Some solutions are starting to support things like TLS fingerprinting, which enforces policy based on TCP and TLS handshake behaviors.  This eliminates the need for certificate management, though the overall security efficacy may suffer as a result</li><br>
+            <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>
+        </ul>
+        </div>
+        <br>
+        <hr style="border-top:3px solid #242526" />
+        <br>
+
+    </div>
+</section>
+<hr style="border-top:3px solid #242526" /><br><br>
+
