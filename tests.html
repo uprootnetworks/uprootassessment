@@ -219,7 +219,39 @@
         <hr style="border-top:3px solid #242526" />
         <br>
 
-    </div>
+    
+    
+<! -- Test 3 - Code Exfiltration  -->
+        <section class="columns">
+		     <div class="columnborderless">
+			     <input name="testType[]" type="checkbox" value="src" form="testSelector" checked>			                    
+			     <label for="src">Code Exfiltration</label><br>						            
+		     </div>							
+		     <div class="columnborderless">
+			     <ul>
+				     <li>This file attempts to send data in common source code formatting</li><br>
+				     <li>This is test data only, and code being sent does not actually do anything</li><br>											
+			     </ul>													
+		     </div>		
+		     <div class="columnborderless">
+			     <div id="srcStatus"></div>
+		     </div>
+	</section>
+	<button class="collapsible">Details</button>
+		<div class="content">
+			<ul>
+				<li>In this test, we are attempting to download an EICAR test file over a TLS/SSL encrypted session.  Most modern web traffic is TLS encrypted, meaning you will need a solution which can handle SSL decryption in order to stop the downloading of malicious content over https. We are using eicar.org/eicar.com to test.</li><br>
+				<li>Without SSL decryption, users are able to download any files over https as that session would otherwise be encrypted end to end.</li><br>
+				<li>SSL decryption requires a firewall to decrypt user's sessions, inspect the payload, and re encrypt the session before passing to the client/server.  To do this, a trusted certficate must be installed on both the firewall and the host machine.</li><br>				
+				<li>Some solutions are starting to support things like TLS fingerprinting, which enforces policy based on TCP and TLS handshake behaviors.  This eliminates the need for certificate management, though the overall security efficacy may suffer as a result</li><br>												
+				<li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>	
+			</ul>	
+		</div>	
+		<br>
+		<hr style="border-top:3px solid #242526" />
+		<br>
+    
+	</div>
 </section>
 <hr style="border-top:3px solid #242526" /><br><br>
 
