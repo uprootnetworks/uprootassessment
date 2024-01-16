@@ -73,7 +73,7 @@ $(function () {
         };
         if(results.includes("zip")) {
             $.ajax({
-                url: 'https://satlab.dreamhosters.com/doublezip.zip',
+                url: 'https://secure.eicar.org/eicarcom2.zip',
                 timeout: 5000,
                 type: 'GET',
                 dataType: 'jsonp',
@@ -136,7 +136,7 @@ $(function () {
         };
         if(results.includes("phish")) {
             var http = jQuery.ajax({  
-                url: 'https://qwkcheckout.com/favicon.ico',
+                url: 'https://bt-home.weebly.com/favicon.ico',
                 type: 'GET',
                 beforeSend: function (xhr) {
                     xhr.overrideMimeType('text/plain; charset=x-user-defined');
@@ -158,22 +158,54 @@ $(function () {
                 $('#phishStatus').append(fail)
             };
         };
-	if(results.includes("src")) {
-	    var srccode = '#ifdef HAVE_CONFIG_H #include <config.h> #elif defined(_MSC_VER) #include <config-msvc.h> #endif #include <syshead.h> #include <common.h> #include <buffer.h> #include <error.h> #include <mtu.h> #include <misc.h> #include <memdbg.h> size_t array_mult_safe (const size_t m1, const size_t m2, const size_t extra) { const size_t limit = 0xFFFFFFFF; unsigned long long res = (unsigned long long)m1 * (unsigned long long)m2 + (unsigned long long)extra; if (unlikely(m1 > limit) || unlikely(m2 > limit) || unlikely(extra > limit) || unlikely(res > (unsigned long long)limit)) msg (M_FATAL, "<attemped allocation of excessively large array>"); return (size_t) res; } void buf_size_error (const size_t size) { msg (M_FATAL, "<fatal buffer size error, size=%lu<, (unsigned long)size); } struct buffer #ifdef DMALLOC alloc_buf_debug (size_t size, const char *file, int line) #else alloc_buf (size_t size) #endif { struct buffer buf; if (!buf_size_valid (size)) buf_size_error (size); buf.capacity = (int)size; buf.offset = 0; buf.len = 0; #ifdef DMALLOC buf.data = openvpn_dmalloc (file, line, size); #else buf.data = calloc (1, size); #endif check_malloc_return(buf.data); return buf; } struct buffer #ifdef DMALLOC alloc_buf_gc_debug (size_t size, struct gc_arena *gc, const char *file, int line) #else alloc_buf_gc (size_t size, struct gc_arena *gc) #endif { struct buffer buf; if (!buf_size_valid (size)) buf_size_error (size); buf.capacity = (int)size; buf.offset = 0; buf.len = 0; #ifdef DMALLOC buf.data = (uint8_t *) gc_malloc_debug (size, false, gc, file, line); #else buf.data = (uint8_t *) gc_malloc (size, false, gc); #endif if (size) *buf.data = 0; return buf; } struct buffer #ifdef DMALLOC clone_buf_debug (const struct buffer* buf, const char *file, int line) #else clone_buf (const struct buffer* buf) #endif { struct buffer ret; ret.capacity = buf->capacity; ret.offset = buf->offset; ret.len = buf->len; #ifdef DMALLOC ret.data = (uint8_t *) openvpn_dmalloc (file, line, buf->capacity); #else ret.data = (uint8_t *) malloc (buf->capacity); #endif check_malloc_return (ret.data); memcpy (BPTR (&ret), BPTR (buf), BLEN (buf)); return ret; } #ifdef BUF_INIT_TRACKING bool buf_init_debug (struct buffer *buf, int offset, const char *file, int line) { buf->debug_file = file; buf->debug_line = line; return buf_init_dowork (buf, offset); } static inline int buf_debug_line (const struct buffer *buf) { return buf->debug_line; } static const char * buf_debug_file (const struct buffer *buf) { return buf->debug_file; } #else #define buf_debug_line(buf) 0 #define buf_debug_file(buf) "<[UNDEF]<" #endif void buf_clear (struct buffer *buf) { if (buf->capacity > 0) memset (buf->data, 0, buf->capacity); buf->len = 0; buf->offset = 0; } bool buf_assign (struct buffer *dest, const struct buffer *src) { if (!buf_init (dest, src->offset)) return false; return buf_write (dest, BPTR (src), BL'
-	    $.ajax({
-		url: 'exfiltrate.php',
+        if(results.includes("src")) {
+	        var srccode = 't=#include <iostream> using namespace std; int main() { int rows, number = 1; cout << "Enter number of rows: "; cin >> rows; for(int i = 1; i <= rows; i++) { for(int j = 1; j <= i; ++j) { cout << number << " "; ++number; } cout << endl; } return 0; }'
+	        $.ajax({
+		    url: 'exfiltrate.php',
     	    	type: 'POST',
- 	    	data: srccode,
-	    }).done(function(data, statusText, xhr){
-		    var status=xhr.status;
+ 	    	    data: srccode,
+	        }).done(function(data, statusText, xhr){
+		        var status=xhr.status;
 	    	    if(status==200 || status==307 || status==302){
-			    $('#srcStatus').append(pass)
-		    } else if (status==403 || status==0 || status==404){
-			    $('#srcStatus').append(fail)
-		    } else {
-			    $('#srcStatus').append(fail)
-		    };
-	    });
-	};
+			        $('#srcStatus').append(pass)
+		        } else if (status==403 || status==0 || status==404){
+			        $('#srcStatus').append(fail)
+		        } else {
+			        $('#srcStatus').append(fail)
+		        };
+	        });
+	    };
+        if(results.includes("ssn")) {
+	        var socials = 't=ssn:514-14-8905, ssn:624-84-9181, ssn:044-34-6954'
+	        $.ajax({
+		    url: 'exfiltrate.php',
+    	    	type: 'POST',
+ 	    	    data: socials,
+	        }).done(function(data, statusText, xhr){
+		        var status=xhr.status;
+	    	    if(status==200 || status==307 || status==302){
+			        $('#ssnStatus').append(pass)
+		        } else if (status==403 || status==0 || status==404){
+			        $('#ssnStatus').append(fail)
+		        } else {
+			        $('#ssnStatus').append(fail)
+		        };
+	        });
+	    };
+        if(results.includes("xss")) {
+	        $.ajax({
+		        url: 'exfiltrate.php?t=%3Cscript%20type=%22text/javascript%22%20language=%22javascript%22%3Ealert(%22success%22)%3C/script%3E&test=xss',
+    	        type: 'GET',
+                dataType: 'text',
+                async: false,
+                success: function(data) {
+                    if (data.includes("success")) {
+                        $('#xssStatus').append(pass)
+                    } else {
+                        $('#xssStatus').append(fail)
+                    };
+                }
+            });
+        };
     });
 });

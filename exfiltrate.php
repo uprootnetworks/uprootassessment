@@ -1,5 +1,5 @@
 <html>
-<form name="input" action="exfiltrate.php" method="get">
+<form name="input" action="exfiltrate.php" method="POST">
 Search:
 <input type="text" name="t">
 <input type="submit" value="Submit">

@@ -116,7 +116,7 @@
         <br>
     
 <! -- Test #5 - Phishing sites -->
-    
+<!--    
         <section class="columns">
         <div class="columnborderless">
                 <input name="testType[]" type="checkbox" value="phish" form="testSelector" checked>
@@ -144,6 +144,7 @@
         <br>
         <hr style="border-top:3px solid #242526" />
         <br>
+        -->
     </div>
 </section>
 
@@ -198,7 +199,7 @@
                 <ul>
                     <li>This test attempts to download an EICAR test file which has been zipped multiple times.</li><br>
                     <li>This file is a test file only, and will not harm your computer</li><br>
-                    <li>File can be downloaded from the following URL: <a href='https://satlab.dreamhosters.com/doublezip.zip' target='_blank'>https://satlab.dreamhosters.com/doublezip.zip</a></li><br>
+                    <li>File can be downloaded from the following URL: <a href='https://demofiles.uprootnetworks.com/doublezip.zip' target='_blank'>https://demofiles.uprootnetworks.com/doublezip.zip</a></li><br>
                 </ul>
             </div>
             <div class="columnborderless">
@@ -208,19 +209,18 @@
         <button class="collapsible">Details</button>
         <div class="content">
         <ul>
-            <li>In this test, we are attempting to download an EICAR test file over a TLS/SSL encrypted session.  Most modern web traffic is TLS encrypted, meaning you will need a solution which can handle SSL decryption in order to stop the downloading of malicious content over https. We are using eicar.org/eicar.com to test.</li><br>
-            <li>Without SSL decryption, users are able to download any files over https as that session would otherwise be encrypted end to end.</li><br>
+            <li>In this test, we are attempting to download an EICAR test file which has been zipped two times.</li><br>
+            <li>Some firewalls inspect files with the .zip extension, but stop there and will not inspect additional compressions contained inside.</li><br>
             <li>SSL decryption requires a firewall to decrypt user's sessions, inspect the payload, and re encrypt the session before passing to the client/server.  To do this, a trusted certficate must be installed on both the firewall and the host machine.</li><br>
             <li>Some solutions are starting to support things like TLS fingerprinting, which enforces policy based on TCP and TLS handshake behaviors.  This eliminates the need for certificate management, though the overall security efficacy may suffer as a result</li><br>
-            <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>
+            <li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the zipped eicar file.</li><br>
         </ul>
         </div>
         <br>
         <hr style="border-top:3px solid #242526" />
         <br>
 
-    
-    
+
 <! -- Test 3 - Code Exfiltration  -->
         <section class="columns">
 		     <div class="columnborderless">
@@ -240,18 +240,79 @@
 	<button class="collapsible">Details</button>
 		<div class="content">
 			<ul>
-				<li>In this test, we are attempting to download an EICAR test file over a TLS/SSL encrypted session.  Most modern web traffic is TLS encrypted, meaning you will need a solution which can handle SSL decryption in order to stop the downloading of malicious content over https. We are using eicar.org/eicar.com to test.</li><br>
-				<li>Without SSL decryption, users are able to download any files over https as that session would otherwise be encrypted end to end.</li><br>
-				<li>SSL decryption requires a firewall to decrypt user's sessions, inspect the payload, and re encrypt the session before passing to the client/server.  To do this, a trusted certficate must be installed on both the firewall and the host machine.</li><br>				
-				<li>Some solutions are starting to support things like TLS fingerprinting, which enforces policy based on TCP and TLS handshake behaviors.  This eliminates the need for certificate management, though the overall security efficacy may suffer as a result</li><br>												
-				<li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully open the eicar file.</li><br>	
+				<li>In this test, we are attempting upload a block of C++ code that can be used to identify prime numbers to a web form.</li><br>
+				<li>Data breaches can be a result of poor password hygiene on the Employee's part.  This results in an attacker gaining access to backend systems which house sensitive information.</li><br>
+				<li>Once an attacker gains access, they can then exfiltrate this data to offsite servers</li><br>				
+				<li>Data Loss Prevention, or DLP scans data as it traverses the network.  It looks for things like social security numbers, banking information, credit card numbers, source code etc. and can prevent the unauthorized sharing of this sensitive information.</li><br>												
+				<li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully post the sensitive information.</li><br>	
 			</ul>	
 		</div>	
 		<br>
 		<hr style="border-top:3px solid #242526" />
 		<br>
-    
-	</div>
+
+<! -- Test 4 - SSN Exfiltration  -->
+        <section class="columns">
+		     <div class="columnborderless">
+			     <input name="testType[]" type="checkbox" value="ssn" form="testSelector" checked>			                    
+			     <label for="ssn">SSN Exfiltration</label><br>						            
+		     </div>							
+		     <div class="columnborderless">
+			     <ul>
+				     <li>This tests attempts to upload (fake) social security numbers to a webform</li><br>
+				     <li>This is test data only, and information being sent is fake test data</li><br>											
+			     </ul>													
+		     </div>		
+		     <div class="columnborderless">
+			     <div id="ssnStatus"></div>
+		     </div>
+	</section>
+	<button class="collapsible">Details</button>
+		<div class="content">
+			<ul>
+				<li>In this test, we are attempting upload fake social security numbers to a web form.</li><br>
+				<li>Data breaches can be a result of poor password hygiene on the Employee's part.  This results in an attacker gaining access to backend systems which house sensitive information.</li><br>
+				<li>Once an attacker gains access, they can then exfiltrate this data to offsite servers</li><br>				
+				<li>Data Loss Prevention, or DLP scans data as it traverses the network.  It looks for things like social security numbers, banking information, credit card numbers, etc. and can prevent the unauthorized sharing of this sensitive information.</li><br>												
+				<li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully post the sensitive information.</li><br>	
+			</ul>	
+		</div>	
+		<br>
+		<hr style="border-top:3px solid #242526" />
+		<br>
+
+
+<! -- Test 5 - Cross Site Scripting  -->
+        <section class="columns">
+		     <div class="columnborderless">
+			     <input name="testType[]" type="checkbox" value="xss" form="testSelector" checked>			                    
+			     <label for="xss">Cross Site Scripting</label><br>						            
+		     </div>							
+		     <div class="columnborderless">
+			     <ul>
+				     <li>This tests attempts to emulate a XSS attack by passing URL encoded data to an application which is not properly validating input data </li><br>
+				     <li>While XSS is typically something that should be prevented application-side via WAF, end users are still suceptible to malicious actors in the form of drive-by downloads, cookie hijacking, and other attacks by embedding malicious code into otherwise trusted web applications.</li><br>											
+			     </ul>													
+		     </div>		
+		     <div class="columnborderless">
+			     <div id="xssStatus"></div>
+		     </div>
+	</section>
+	<button class="collapsible">Details</button>
+		<div class="content">
+			<ul>
+				<li>In this test, we are attempting to emulate a cross site scripting attack, by encoding a simple script into a URL.</li><br>
+				<li>This script is not passing any real data.  It is simply echoing a success or failure message, and then checking the response.</li><br>
+				<li>Cross Site Scripting, or XSS, occurs when a malicious actor is able to embed malicious code into an otherwise trusted application, usually in the form of a malformed URL.</li><br>				
+				<li>XSS attacks can be used to trigger downloads without user interaction, redirection to malicious sites, hijacking of session information like cookies, usernames, and other personal data, as well as updating backend databases.</li><br>												
+				<li>If you see a green checkmark, then you are currently blocking this connectivity.  If a red checkmark is shown, then your browser was successfully execute the script, and received a success message.</li><br>	
+			</ul>	
+		</div>	
+		<br>
+		<hr style="border-top:3px solid #242526" />
+		<br>
+
+        
+    </div>
 </section>
 <hr style="border-top:3px solid #242526" /><br><br>
-
